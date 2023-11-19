@@ -269,6 +269,12 @@ const Login = props => {
                           Forgot your password?
                         </Link>
                       </div>
+                      <div className="mt-4 text-center">
+                        <Link to="/password-reset" className="text-muted">
+                          <i className="mdi mdi-lock me-1" />
+                          Password Reset?
+                        </Link>
+                      </div>
                     </Form>
                   </div>
                 </CardBody>

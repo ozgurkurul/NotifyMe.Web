@@ -1,6 +1,13 @@
 import React from "react"
 import { Redirect } from "react-router-dom"
 
+// // Authentication related pages
+import Login from "../pages/Authentication/Login"
+import Logout from "../pages/Authentication/Logout"
+import Register from "../pages/Authentication/Register"
+import ForgetPwd from "../pages/Authentication/ForgetPassword"
+import PwdReset from "../pages/Authentication/PasswordReset"
+
 // Pages Component
 import Chat from "../pages/Chat/Chat"
 
@@ -43,12 +50,6 @@ import EmailTemplateBilling from "../pages/Email/email-template-billing"
 // //Invoices
 import InvoicesList from "../pages/Invoices/invoices-list"
 import InvoiceDetail from "../pages/Invoices/invoices-detail"
-
-// // Authentication related pages
-import Login from "../pages/Authentication/Login"
-import Logout from "../pages/Authentication/Logout"
-import Register from "../pages/Authentication/Register"
-import ForgetPwd from "../pages/Authentication/ForgetPassword"
 
 // //  // Inner Authentication
 import Login1 from "../pages/AuthenticationInner/Login"
@@ -175,6 +176,10 @@ import ContactsList from "../pages/Contacts/ContactList/contacts-list"
 import ContactsProfile from "../pages/Contacts/ContactsProfile/contacts-profile"
 
 const authProtectedRoutes = [
+//notifyme
+  { path: "/my-board", component: Dashboard },
+
+//dashboard
   { path: "/dashboard", component: Dashboard },
   { path: "/dashboard-saas", component: DashboardSaas },
   { path: "/dashboard-crypto", component: DashboardCrypto },
@@ -320,11 +325,14 @@ const authProtectedRoutes = [
 ]
 
 const publicRoutes = [
+//notifyme
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
   { path: "/forgot-password", component: ForgetPwd },
   { path: "/register", component: Register },
+  { path: "/password-reset", component: PwdReset },
 
+//maintance
   { path: "/pages-maintenance", component: PagesMaintenance },
   { path: "/pages-comingsoon", component: PagesComingsoon },
   { path: "/pages-404", component: Pages404 },
