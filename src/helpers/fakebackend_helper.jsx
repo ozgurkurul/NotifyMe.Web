@@ -51,9 +51,6 @@ const postFakeLogin = data => post(url.POST_FAKE_LOGIN, data)
 // postForgetPwd
 const postFakeForgetPwd = data => post(url.POST_FAKE_PASSWORD_FORGET, data)
 
-// postPwdReset
-const postFakePwdReset = data => post(url.POST_FAKE_PASSWORD_RESET, data)
-
 // Edit profile
 const postJwtProfile = data => post(url.POST_EDIT_JWT_PROFILE, data)
 
@@ -95,9 +92,6 @@ const postJwtLogin = data => post(url.POST_FAKE_JWT_LOGIN, data)
 
 // postForgetPwd
 const postJwtForgetPwd = data => post(url.POST_FAKE_JWT_PASSWORD_FORGET, data)
-
-// postPwdReset
-const postJwtPwdReset = data => post(url.POST_FAKE_JWT_PASSWORD_RESET, data)
 
 // postSocialLogin
 export const postSocialLogin = data => post(url.SOCIAL_LOGIN, data)
@@ -290,11 +284,9 @@ export {
   postFakeLogin,
   postFakeProfile,
   postFakeForgetPwd,
-  postFakePwdReset,
   postJwtRegister,
   postJwtLogin,
   postJwtForgetPwd,
-  postJwtPwdReset,
   postJwtProfile,
   getProductComents,
   onLikeComment,

@@ -8,7 +8,6 @@ import Login from "./auth/login/reducer"
 import Account from "./auth/register/reducer"
 import ForgetPassword from "./auth/forgetpwd/reducer"
 import Profile from "./auth/profile/reducer"
-import PasswordReset from "./auth/pwdreset/reducer"
 
 //E-commerce
 import ecommerce from "./e-commerce/reducer"
@@ -49,7 +48,6 @@ const rootReducer = combineReducers({
   Login,
   Account,
   ForgetPassword,
-  PasswordReset,
   Profile,
   ecommerce,
   calendar,

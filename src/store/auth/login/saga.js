@@ -15,7 +15,6 @@ import {
 const fireBaseBackend = getFirebaseBackend();
 
 function* loginUser({ payload: { user, history } }) {
-  debugger;
   try {
     if (import.meta.env.VITE_APP_DEFAULTAUTH === "firebase") {
       const response = yield call(
