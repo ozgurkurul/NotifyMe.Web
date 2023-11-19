@@ -12,15 +12,15 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // action
-import { userForgetPassword } from "../../store/actions";
+import { userResetPassword } from "../../store/actions";
 
 // import images
 import profile from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
 
-const ForgetPasswordPage = props => {
+const ResetPasswordPage = props => {
   //meta title
-  document.title="Forget Password | NotifyMe";
+  document.title="Reset Password | NotifyMe";
   const dispatch = useDispatch();
 
   const validation = useFormik({
@@ -34,13 +34,13 @@ const ForgetPasswordPage = props => {
       email: Yup.string().required("Please Enter Your Email"),
     }),
     onSubmit: (values) => {
-      dispatch(userForgetPassword(values, props.history));
+      dispatch(userResetPassword(values, props.history));
     }
   });
 
-  const { forgetError, forgetSuccessMsg } = useSelector(state => ({
-    forgetError: state.ForgetPassword.forgetError,
-    forgetSuccessMsg: state.ForgetPassword.forgetSuccessMsg,
+  const { resetError, resetSuccessMsg } = useSelector(state => ({
+    resetError: state.ResetPassword.resetError,
+    resetSuccessMsg: state.ResetPassword.resetSuccessMsg,
   }));
 
   return (
@@ -84,14 +84,14 @@ const ForgetPasswordPage = props => {
                     </Link>
                   </div>
                   <div className="p-2">
-                    {forgetError && forgetError ? (
+                    {resetError && resetError ? (
                       <Alert color="danger" style={{ marginTop: "13px" }}>
-                        {forgetError}
+                        {resetError}
                       </Alert>
                     ) : null}
-                    {forgetSuccessMsg ? (
+                    {resetSuccessMsg ? (
                       <Alert color="success" style={{ marginTop: "13px" }}>
-                        {forgetSuccessMsg}
+                        {resetSuccessMsg}
                       </Alert>
                     ) : null}
 
@@ -155,8 +155,8 @@ const ForgetPasswordPage = props => {
   );
 };
 
-ForgetPasswordPage.propTypes = {
+ResetPasswordPage.propTypes = {
   history: PropTypes.object,
 };
 
-export default withRouter(ForgetPasswordPage);
+export default withRouter(ResetPasswordPage);

@@ -3,18 +3,18 @@ import {
   Container,
 } from "reactstrap"
 
-const Dashboard = () => {
+const IssueDetail = () => {
   //meta title
-  document.title="Forget Password | NotifyMe";
+  document.title="Issue Detail | NotifyMe";
   return (
     <React.Fragment>
     <div className="page-content">
       <Container fluid>
-        <h4>Dashboard</h4>
+        <h4>Issue Detail</h4>
       </Container>
     </div>
   </React.Fragment>
   );
 }
 
-export default Dashboard;
+export default IssueDetail;

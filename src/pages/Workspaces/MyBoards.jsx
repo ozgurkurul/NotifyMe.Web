@@ -3,18 +3,18 @@ import {
   Container,
 } from "reactstrap"
 
-const Dashboard = () => {
+const MyBoard = () => {
   //meta title
-  document.title="Forget Password | NotifyMe";
+  document.title="My Board | NotifyMe";
   return (
     <React.Fragment>
     <div className="page-content">
       <Container fluid>
-        <h4>Dashboard</h4>
+        <h4>My Board</h4>
       </Container>
     </div>
   </React.Fragment>
   );
 }
 
-export default Dashboard;
+export default MyBoard;
