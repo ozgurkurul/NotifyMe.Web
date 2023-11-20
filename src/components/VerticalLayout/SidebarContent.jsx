@@ -135,13 +135,6 @@ const SidebarContent = props => {
             </li>
             
             <li>
-              <Link to="/teams" >
-                <i className="bx bx-user-circle"></i>
-                <span>{props.t("Teams")}</span>
-              </Link>
-            </li>
-
-            <li>
               <Link to="/users" >
                 <i className="bx bx-user"></i>
                 <span>{props.t("Users")}</span>
@@ -161,15 +154,59 @@ const SidebarContent = props => {
               </Link>
             </li>
 
-
             <li>
-              <Link to="/teams" >
+              <Link to="/profile" >
                 <i className="bx bx-user-circle"></i>
                 <span>{props.t("Profile")}</span>
               </Link>
             </li>
             
-            <li className="menu-title">{props.t("Menu")} </li>
+
+
+
+            <li className="menu-title">{props.t("General")} </li>
+
+            <li>
+              <Link to="/mainpage" >
+                <i className="bx bx-user-circle"></i>
+                <span>{props.t("Main Page")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/login" >
+                <i className="bx bx-user-circle"></i>
+                <span>{props.t("Login")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/register" >
+                <i className="bx bx-user-circle"></i>
+                <span>{props.t("Register")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/forgot-password" >
+                <i className="bx bx-user-circle"></i>
+                <span>{props.t("Forgot Password")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/password-reset" >
+                <i className="bx bx-user-circle"></i>
+                <span>{props.t("Password Reset")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/logout" >
+                <i className="bx bx-user-circle"></i>
+                <span>{props.t("Logout")}</span>
+              </Link>
+            </li>
 
           </ul>
         </div>

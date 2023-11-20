@@ -41,7 +41,7 @@ const NotificationDropdown = props => {
               <div className="col-auto">
                 <a href="#!" className="small">
                   {" "}
-                  View All
+                  {props.t("View all")}
                 </a>
               </div>
             </Row>
@@ -143,7 +143,7 @@ const NotificationDropdown = props => {
           <div className="p-2 border-top d-grid">
             <Link
               className="btn btn-sm btn-link font-size-14 btn-block text-center"
-              to="#"
+              to="/notifications"
             >
               <i className="mdi mdi-arrow-right-circle me-1"></i>
               {" "}

@@ -232,9 +232,6 @@ const Header = props => {
               </button>
             </div>
 
-            <NotificationDropdown />
-            <ProfileMenu />
-            
             <div
                onClick={() => {
                 props.showRightSidebarAction(!props.showRightSidebar);
@@ -248,6 +245,10 @@ const Header = props => {
                 <i className="bx bx-cog bx-spin" />
               </button>
             </div>
+            
+            <NotificationDropdown />
+            <ProfileMenu />
+            
           </div>
         </div>
       </header>
