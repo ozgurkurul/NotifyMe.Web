@@ -12,7 +12,6 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
-import megamenuImg from "../../assets/images/megamenu-img.png";
 
 // import images
 import github from "../../assets/images/brands/github.png";
@@ -37,7 +36,6 @@ import {
 
 const Header = props => {
   const [search, setsearch] = useState(false);
-  const [megaMenu, setmegaMenu] = useState(false);
   const [socialDrp, setsocialDrp] = useState(false);
 
   function toggleFullscreen() {
