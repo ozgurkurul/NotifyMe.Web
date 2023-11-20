@@ -5,7 +5,7 @@ import {
 
 const Dashboard = () => {
   //meta title
-  document.title="Forget Password | NotifyMe";
+  document.title="Dashboard | NotifyMe";
   return (
     <React.Fragment>
     <div className="page-content">
