@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // action
-import { userResetPassword } from "../../store/actions";
+import { userPasswordReset } from "../../store/actions";
 
 // import images
 import profile from "../../assets/images/profile-img.png";
@@ -34,13 +34,13 @@ const ResetPasswordPage = props => {
       email: Yup.string().required("Please Enter Your Email"),
     }),
     onSubmit: (values) => {
-      dispatch(userResetPassword(values, props.history));
+      dispatch(userPasswordReset(values, props.history));
     }
   });
 
-  const { resetError, resetSuccessMsg } = useSelector(state => ({
-    resetError: state.ResetPassword.resetError,
-    resetSuccessMsg: state.ResetPassword.resetSuccessMsg,
+  const { passwordResetError, passwordResetSuccessMsg } = useSelector(state => ({
+    passwordResetError: state.PasswordReset.passwordResetError,
+    passwordResetSuccessMsg: state.PasswordReset.passwordResetSuccessMsg,
   }));
 
   return (
@@ -84,14 +84,14 @@ const ResetPasswordPage = props => {
                     </Link>
                   </div>
                   <div className="p-2">
-                    {resetError && resetError ? (
+                    {passwordResetError && passwordResetError ? (
                       <Alert color="danger" style={{ marginTop: "13px" }}>
-                        {resetError}
+                        {passwordResetError}
                       </Alert>
                     ) : null}
-                    {resetSuccessMsg ? (
+                    {passwordResetSuccessMsg ? (
                       <Alert color="success" style={{ marginTop: "13px" }}>
-                        {resetSuccessMsg}
+                        {passwordResetSuccessMsg}
                       </Alert>
                     ) : null}
 

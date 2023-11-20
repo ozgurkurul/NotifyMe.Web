@@ -97,6 +97,26 @@ class FirebaseAuthBackend {
   };
 
   /**
+   * forget Password user with given details
+   */
+  passwordReset = email => {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .sendPasswordResetEmail(email, {
+          url:
+            window.location.protocol + "//" + window.location.host + "/login",
+        })
+        .then(() => {
+          resolve(true);
+        })
+        .catch(error => {
+          reject(this._handleError(error));
+        });
+    });
+  };
+
+  /**
    * Logout the user
    */
   logout = () => {

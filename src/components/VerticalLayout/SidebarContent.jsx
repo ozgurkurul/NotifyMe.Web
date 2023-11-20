@@ -107,7 +107,7 @@ const SidebarContent = props => {
               </Link>
             </li>
             <li>
-              <Link to="/myboards" >
+              <Link to="/my-boards" >
                 <i className="bx bx-home-circle"></i>
                 <span>{props.t("MyBoards")}</span>
               </Link>

@@ -5,7 +5,7 @@ import { Switch, BrowserRouter as Router } from "react-router-dom"
 import { connect } from "react-redux"
 
 // Import Routes all
-import { authProtectedRoutes,publicRoutes } from "./routes"
+import { authProtectedRoutes, publicRoutes } from "./routes"
 
 // Import all middleware
 import Authmiddleware from "./routes/route"
