@@ -100,30 +100,47 @@ const SidebarContent = props => {
                 <span>{props.t("Dashboards")}</span>
               </Link>
             </li>
+
             <li>
-              <Link to="/workspaces" >
+              <Link to="/workspace" >
                 <i className="bx bx-network-chart"></i>
-                <span>{props.t("Workspaces")}</span>
+                <span>{props.t("Workspace")}</span>
               </Link>
             </li>
+
             <li>
               <Link to="/my-boards" >
                 <i className="bx bx-home-circle"></i>
-                <span>{props.t("MyBoards")}</span>
+                <span>{props.t("My Boards")}</span>
               </Link>
             </li>
+            <li>
+              <Link to="/board-detail" >
+                <i className="bx bx-home-circle"></i>
+                <span>{props.t("Board Detail")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/issue-detail" >
+                <i className="bx bx-home-circle"></i>
+                <span>{props.t("Issue Detail")}</span>
+              </Link>
+            </li>
+
             <li>
               <Link to="/settings" >
                 <i className="bx bx-cog"></i>
                 <span>{props.t("Settings")}</span>
               </Link>
             </li>
+            
             <li>
               <Link to="/teams" >
                 <i className="bx bx-user-circle"></i>
                 <span>{props.t("Teams")}</span>
               </Link>
             </li>
+
             <li>
               <Link to="/users" >
                 <i className="bx bx-user"></i>
@@ -131,11 +148,28 @@ const SidebarContent = props => {
               </Link>
             </li>
             <li>
+              <Link to="/user-detail" >
+                <i className="bx bx-user"></i>
+                <span>{props.t("User Detail")}</span>
+              </Link>
+            </li>
+
+            <li>
               <Link to="/integrations" >
                 <i className="bx bx-customize"></i>
                 <span>{props.t("Integrations")}</span>
               </Link>
             </li>
+
+
+            <li>
+              <Link to="/teams" >
+                <i className="bx bx-user-circle"></i>
+                <span>{props.t("Profile")}</span>
+              </Link>
+            </li>
+            
+            <li className="menu-title">{props.t("Menu")} </li>
 
           </ul>
         </div>
