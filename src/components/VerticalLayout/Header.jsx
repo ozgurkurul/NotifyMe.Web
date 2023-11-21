@@ -12,6 +12,7 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
+import WorkspaceDropdown from "../CommonForBoth/TopbarDropdown/WorkspaceDropdown";
 
 // import images
 import github from "../../assets/images/brands/github.png";
@@ -37,6 +38,7 @@ import {
 const Header = props => {
   const [search, setsearch] = useState(false);
   const [socialDrp, setsocialDrp] = useState(false);
+  const [megaMenu, setmegaMenu] = useState(false);
 
   function toggleFullscreen() {
     if (
@@ -79,6 +81,7 @@ const Header = props => {
     <React.Fragment>
       <header id="page-topbar">
         <div className="navbar-header">
+
           <div className="d-flex">
 
             <div className="navbar-brand-box d-lg-none d-md-block">
@@ -106,6 +109,8 @@ const Header = props => {
               <i className="fa fa-fw fa-bars" />
             </button>
 
+            <WorkspaceDropdown />
+
             <form className="app-search d-none d-lg-block">
               <div className="position-relative">
                 <input
@@ -116,7 +121,9 @@ const Header = props => {
                 <span className="bx bx-search-alt" />
               </div>
             </form>
+
           </div>
+
           <div className="d-flex">
             <div className="dropdown d-inline-block d-lg-none ms-2">
               <button
