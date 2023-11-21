@@ -31,8 +31,8 @@ const WorkspaceDropdown = () => {
   ];
 
   useEffect(() => {
-    const currentWorkspaceId = localStorage.getItem("WORKSPACE");
-    if(currentWorkspaceId == null || currentWorkspaceId == '')
+    let currentWorkspaceId = localStorage.getItem("WORKSPACE");
+    if(currentWorkspaceId == null || currentWorkspaceId == '')
       currentWorkspaceId = '1'
     setSelectedWorkspaceId(currentWorkspaceId);
   }, [])

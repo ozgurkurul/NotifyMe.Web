@@ -49,8 +49,22 @@
     "Register": "Kayıt",
     "Logout": "Çıkış",
     "Forget Password": "Şifremi Unuttum",
-    "Email verification" : "Eposta doğrulama",
+    "Email verification" : "E-posta doğrulama",
     "Confirm Mail" : "Posta Onaylama",
-    "Two step verification" : "İki adımlı doğrulama"
+    "Two step verification" : "İki adımlı doğrulama",
+    "Welcome Back !": "Tekrardan Hoşgeldin!",
+    "Sign in to continue to NotifyMe.": "NotifyMe'ye devam etmek için oturum açın.",
+    "Email": "E-posta",
+    "Password": "Şifre",
+    "Remember me": "Beni hatırla",
+    "Forgot your password?": "Parolanızı mı unuttunuz?",
+    "Password reset?": "Parola sıfırlama?",
+    "Log In": "Giriş Yap",
+    "Do not have an account?": "Hesabınız yok mu?",
+    "Signup now": "Şimdi kayıt ol",
+    "Enter email": "E-postanızı giriniz",
+    "Enter password": "Şifrenizi giriniz",
+    "Please Enter Your Email": "Lütfen e-postanızı giriniz",
+    "Please Enter Your Password": "Lütfen şifrenizi giriniz"
   }
   

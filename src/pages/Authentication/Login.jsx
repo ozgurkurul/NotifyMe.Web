@@ -12,20 +12,18 @@ import { withRouter, Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-//Social Media Imports
-import { GoogleLogin } from "react-google-login";
-// import TwitterLogin from "react-twitter-auth"
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+// Import menuDropdown
+import LanguageDropdown from "../../components/CommonForBoth/TopbarDropdown/LanguageDropdown";
 
 // actions
-import { loginUser, socialLogin } from "../../store/actions";
+import { loginUser } from "../../store/actions";
+
+//i18n
+import { withTranslation } from "react-i18next";
 
 // import images
 import profile from "../../assets/images/profile-img.png";
 import logo from "../../assets/images/logo.svg";
-
-//Import config
-// import { facebook, google } from "../../config";
 
 const Login = props => {
   //meta title
@@ -41,8 +39,8 @@ const Login = props => {
       password: "123456" || '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().required("Please Enter Your Email"),
-      password: Yup.string().required("Please Enter Your Password"),
+      email: Yup.string().required(props.t("Please Enter Your Email")),
+      password: Yup.string().required(props.t("Please Enter Your Password")),
     }),
     onSubmit: (values) => {
       dispatch(loginUser(values, props.history));
@@ -53,54 +51,16 @@ const Login = props => {
     error: state.Login.error,
   }));
 
-  // // handleValidSubmit
-  // const handleValidSubmit = (event, values) => {
-  //   dispatch(loginUser(values, props.history));
-  // };
-
-  const signIn = (res, type) => {
-    if (type === "google" && res) {
-      const postData = {
-        name: res.profileObj.name,
-        email: res.profileObj.email,
-        token: res.tokenObj.access_token,
-        idToken: res.tokenId,
-      };
-      dispatch(socialLogin(postData, props.history, type));
-    } else if (type === "facebook" && res) {
-      const postData = {
-        name: res.name,
-        email: res.email,
-        token: res.accessToken,
-        idToken: res.tokenId,
-      };
-      dispatch(socialLogin(postData, props.history, type));
-    }
-  };
-
-  //handleGoogleLoginResponse
-  const googleResponse = response => {
-    signIn(response, "google");
-  };
-
-  //handleTwitterLoginResponse
-  // const twitterResponse = e => {}
-
-  //handleFacebookLoginResponse
-  const facebookResponse = response => {
-    signIn(response, "facebook");
-  };
-
   return (
     <React.Fragment>
 
-      <div className="home-btn d-none d-sm-block">
-        <Link to="/" className="text-dark">
-          <i className="fas fa-home h2" />
-        </Link>
-      </div>
-      <div className="account-pages my-5 pt-sm-5">
+      <div className="account-pages my-5 pt-sm-2">
         <Container>
+          <Row className="justify-content-center">
+            <Col md={8} lg={6} xl={5} className="text-sm-end">
+              <LanguageDropdown />
+            </Col>
+          </Row>
           <Row className="justify-content-center">
             <Col md={8} lg={6} xl={5}>
               <Card className="overflow-hidden">
@@ -108,8 +68,8 @@ const Login = props => {
                   <Row>
                     <Col xs={7}>
                       <div className="text-primary p-4">
-                        <h5 className="text-primary">Welcome Back !</h5>
-                        <p>Sign in to continue to Skote.</p>
+                        <h5 className="text-primary">{props.t("Welcome Back !")}</h5>
+                        <p>{props.t("Sign in to continue to NotifyMe.")}</p>
                       </div>
                     </Col>
                     <Col className="col-5 align-self-end">
@@ -144,11 +104,11 @@ const Login = props => {
                       {error ? <Alert color="danger">{error}</Alert> : null}
 
                       <div className="mb-3">
-                        <Label className="form-label">Email</Label>
+                        <Label className="form-label">{props.t("Email")}</Label>
                         <Input
                           name="email"
                           className="form-control"
-                          placeholder="Enter email"
+                          placeholder={props.t("Enter email")}
                           type="email"
                           onChange={validation.handleChange}
                           onBlur={validation.handleBlur}
@@ -163,12 +123,12 @@ const Login = props => {
                       </div>
 
                       <div className="mb-3">
-                        <Label className="form-label">Password</Label>
+                        <Label className="form-label">{props.t("Password")}</Label>
                         <Input
                           name="password"
                           value={validation.values.password || ""}
                           type="password"
-                          placeholder="Enter Password"
+                          placeholder={props.t("Enter password")}
                           onChange={validation.handleChange}
                           onBlur={validation.handleBlur}
                           invalid={
@@ -190,7 +150,7 @@ const Login = props => {
                           className="form-check-label"
                           htmlFor="customControlInline"
                         >
-                          Remember me
+                          {props.t("Remember me")}
                         </label>
                       </div>
 
@@ -199,80 +159,14 @@ const Login = props => {
                           className="btn btn-primary btn-block"
                           type="submit"
                         >
-                          Log In
+                          {props.t("Log In")}
                         </button>
-                      </div>
-
-                      <div className="mt-4 text-center">
-                        <h5 className="font-size-14 mb-3">Sign in with</h5>
-
-                        <ul className="list-inline">
-                          {/* <li className="list-inline-item">
-                            <FacebookLogin
-                              appId={facebook.APP_ID}
-                              autoLoad={false}
-                              callback={facebookResponse}
-                              render={renderProps => (
-                                <Link
-                                  to="#"
-                                  className="social-list-item bg-primary text-white border-primary"
-                                  onClick={renderProps.onClick}
-                                >
-                                  <i className="mdi mdi-facebook" />
-                                </Link>
-                              )}
-                            />
-                          </li> */}
-                          {/*<li className="list-inline-item">*/}
-                          {/*  <TwitterLogin*/}
-                          {/*    loginUrl={*/}
-                          {/*      "http://localhost:4000/api/v1/auth/twitter"*/}
-                          {/*    }*/}
-                          {/*    onSuccess={this.twitterResponse}*/}
-                          {/*    onFailure={this.onFailure}*/}
-                          {/*    requestTokenUrl={*/}
-                          {/*      "http://localhost:4000/api/v1/auth/twitter/revers"*/}
-                          {/*    }*/}
-                          {/*    showIcon={false}*/}
-                          {/*    tag={"div"}*/}
-                          {/*  >*/}
-                          {/*    <a*/}
-                          {/*      href=""*/}
-                          {/*      className="social-list-item bg-info text-white border-info"*/}
-                          {/*    >*/}
-                          {/*      <i className="mdi mdi-twitter"/>*/}
-                          {/*    </a>*/}
-                          {/*  </TwitterLogin>*/}
-                          {/*</li>*/}
-                          {/* <li className="list-inline-item">
-                            <GoogleLogin
-                              clientId="23144678283-oek7ncjmmrgkgmi2i56sc411gp71a8sp.apps.googleusercontent.com"
-                              render={renderProps => (
-                                <Link
-                                  to="#"
-                                  className="social-list-item bg-danger text-white border-danger"
-                                  onClick={renderProps.onClick}
-                                >
-                                  <i className="mdi mdi-google" />
-                                </Link>
-                              )}
-                              onSuccess={googleResponse}
-                              onFailure={() => { }}
-                            />
-                          </li> */}
-                        </ul>
                       </div>
 
                       <div className="mt-4 text-center">
                         <Link to="/forgot-password" className="text-muted">
                           <i className="mdi mdi-lock me-1" />
-                          Forgot your password?
-                        </Link>
-                      </div>
-                      <div className="mt-4 text-center">
-                        <Link to="/password-reset" className="text-muted">
-                          <i className="mdi mdi-lock me-1" />
-                          password reset?
+                          {props.t("Forgot your password?")}
                         </Link>
                       </div>
                     </Form>
@@ -281,15 +175,15 @@ const Login = props => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  Don&#39;t have an account ?{" "}
+                  {props.t("Do not have an account?")}
+                  {" "}
                   <Link to="/register" className="fw-medium text-primary">
                     {" "}
-                    Signup now{" "}
+                    {props.t("Signup now")}{" "}
                   </Link>{" "}
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{" "}
-                  <i className="mdi mdi-heart text-danger" /> by Themesbrand
+                  © {new Date().getFullYear()} NotifyMe by Özgür Kurul
                 </p>
               </div>
             </Col>
@@ -300,8 +194,9 @@ const Login = props => {
   );
 };
 
-export default withRouter(Login);
-
 Login.propTypes = {
+  t: PropTypes.any,
   history: PropTypes.object,
 };
+
+export default withRouter(withTranslation()(Login));
