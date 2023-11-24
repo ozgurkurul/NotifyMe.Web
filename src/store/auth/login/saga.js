@@ -4,9 +4,9 @@ import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { LOGIN_USER, LOGOUT_USER } from "./actionTypes";
 import { apiError, loginSuccess, logoutUserSuccess } from "./actions";
 
-import {
-  postLogin
-} from "../../../api/auth/Login";
+import { postLogin } from "../../../api/auth/Login";
+
+import { notifyError } from "../../../notify/notify_helper"
 
 function* loginUser({ payload: { user, history } }) {
   try {
@@ -49,7 +49,7 @@ function* loginUser({ payload: { user, history } }) {
     if(error.response.status == 401){
       console.log("özgür yetkisiz")
     }
-
+    notifyError("özgür yetkisiz", "başlık 2 ")
     yield put(apiError(error));
   }
 }

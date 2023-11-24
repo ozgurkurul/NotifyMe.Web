@@ -23,8 +23,13 @@ import "./assets/scss/theme.scss"
 
 import fakeBackend from "/src/helpers/AuthType/fakeBackend";
 
+//notify toastr
+import "toastr/build/toastr.min.css";
+
 // Activating fake backend
 fakeBackend();
+//todo:ozgur add app key 
+
 
 // const firebaseConfig = {
 //   apiKey: import.meta.env.VITE_APP_APIKEY,
