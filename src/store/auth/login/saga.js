@@ -1,21 +1,23 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 // Login Redux States
-import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN } from "./actionTypes";
+import { LOGIN_USER, LOGOUT_USER } from "./actionTypes";
 import { apiError, loginSuccess, logoutUserSuccess } from "./actions";
 
-//Include Both Helper File with needed methods
-import { getFirebaseBackend } from "../../../helpers/firebase_helper";
 import {
-  postFakeLogin,
-  postJwtLogin,
-  postSocialLogin,
-} from "../../../helpers/fakebackend_helper";
-
-const fireBaseBackend = getFirebaseBackend();
+  postLogin
+} from "../../../api/auth/Login";
 
 function* loginUser({ payload: { user, history } }) {
   try {
+    const response = yield call(postLogin, {
+      email: user.email,
+      password: user.password,
+    });
+    localStorage.setItem("AuthUser", JSON.stringify(response));
+    yield put(loginSuccess(response));
+    history.push("/dashboard");
+/*
     if (import.meta.env.VITE_APP_DEFAULTAUTH === "firebase") {
       const response = yield call(
         fireBaseBackend.loginUser,
@@ -28,7 +30,7 @@ function* loginUser({ payload: { user, history } }) {
         email: user.email,
         password: user.password,
       });
-      localStorage.setItem("authUser", JSON.stringify(response));
+      localStorage.setItem("AuthUser", JSON.stringify(response));
       yield put(loginSuccess(response));
     } else if (import.meta.env.VITE_APP_DEFAULTAUTH === "fake") {
 
@@ -36,18 +38,26 @@ function* loginUser({ payload: { user, history } }) {
         email: user.email,
         password: user.password,
       });
-      localStorage.setItem("authUser", JSON.stringify(response));
+      localStorage.setItem("AuthUser", JSON.stringify(response));
       yield put(loginSuccess(response));
     }
-    history.push("/dashboard");
+    */
+
+
+    
   } catch (error) {
+    if(error.response.status == 401){
+      console.log("özgür yetkisiz")
+    }
+
     yield put(apiError(error));
   }
 }
 
 function* logoutUser({ payload: { history } }) {
+  /*
   try {
-    localStorage.removeItem("authUser");
+    localStorage.removeItem("AuthUser");
 
     if (import.meta.env.VITE_APP_DEFAULTAUTH === "firebase") {
       const response = yield call(fireBaseBackend.logout);
@@ -57,7 +67,9 @@ function* logoutUser({ payload: { history } }) {
   } catch (error) {
     yield put(apiError(error));
   }
+   */
 }
+/*
 
 function* socialLogin({ payload: { data, history, type } }) {
   try {
@@ -68,11 +80,11 @@ function* socialLogin({ payload: { data, history, type } }) {
         data,
         type,
       );
-      localStorage.setItem("authUser", JSON.stringify(response));
+      localStorage.setItem("AuthUser", JSON.stringify(response));
       yield put(loginSuccess(response));
     } else {
       const response = yield call(postSocialLogin, data);
-      localStorage.setItem("authUser", JSON.stringify(response));
+      localStorage.setItem("AuthUser", JSON.stringify(response));
       yield put(loginSuccess(response));
     }
     history.push("/dashboard");
@@ -81,9 +93,9 @@ function* socialLogin({ payload: { data, history, type } }) {
   }
 }
 
+*/
 function* authSaga() {
   yield takeEvery(LOGIN_USER, loginUser);
-  yield takeLatest(SOCIAL_LOGIN, socialLogin);
   yield takeEvery(LOGOUT_USER, logoutUser);
 }
 

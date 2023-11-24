@@ -112,7 +112,7 @@
     "@fullcalendar/daygrid": "^5.9.0",
     "@fullcalendar/interaction": "^5.9.0",
     "@fullcalendar/react": "^5.9.0",
-    "@types/react": "^18.0.0",
+    "@types/react": "^18.2.38",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
     "babel-core": "^6.26.3",
