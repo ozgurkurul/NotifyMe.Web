@@ -17,7 +17,7 @@ function isLoginRequied(){
     }
     const token = authUser["token"];
     if (jwtDecode(token).exp < Date.now() / 1000) {
-      localStorage.clear();
+      localStorage.removeItem("AuthUser");
       return true;
     }
     return false;
