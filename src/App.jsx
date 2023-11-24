@@ -27,7 +27,8 @@ import fakeBackend from "/src/helpers/AuthType/fakeBackend";
 import "toastr/build/toastr.min.css";
 
 // Activating fake backend
-fakeBackend();
+//fakeBackend();
+
 //todo:ozgur add app key 
 
 
