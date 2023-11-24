@@ -4,52 +4,23 @@ import { takeEvery, fork, put, all, call } from "redux-saga/effects"
 import { FORGET_PASSWORD } from "./actionTypes"
 import { userForgetPasswordSuccess, userForgetPasswordError } from "./actions"
 
-//Include Both Helper File with needed methods
-import { getFirebaseBackend } from "../../../helpers/firebase_helper"
-import {
-  postFakeForgetPwd,
-  postJwtForgetPwd,
-} from "../../../helpers/fakebackend_helper"
+//api
+import { postForgetPwd } from "../../../api/auth/Login";
+//i18n
+import i18n from "../../../i18n";
 
-const fireBaseBackend = getFirebaseBackend()
-
-//If user is send successfully send mail link then dispatch redux action's are directly from here.
 function* forgetUser({ payload: { user, history } }) {
   try {
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      const response = yield call(fireBaseBackend.forgetPassword, user.email)
-      if (response) {
-        yield put(
-          userForgetPasswordSuccess(
-            "Reset link are sended to your mailbox, check there first"
-          )
-        )
-      }
-    } else if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
-      const response = yield call(postJwtForgetPwd, "/jwt-forget-pwd", {
-        email: user.email,
-      })
-      if (response) {
-        yield put(
-          userForgetPasswordSuccess(
-            "Reset link are sended to your mailbox, check there first"
-          )
-        )
-      }
-    } else {
-      const response = yield call(postFakeForgetPwd, "/fake-forget-pwd", {
-        email: user.email,
-      })
-      if (response) {
-        yield put(
-          userForgetPasswordSuccess(
-            "Reset link are sended to your mailbox, check there first"
-          )
-        )
-      }
+    const response = yield call(postForgetPwd, {
+      email: user.email,
+    });
+    if (response) {
+      yield put(
+        userForgetPasswordSuccess(i18n.t("Reset link are sended to your mailbox!"))
+      )
     }
   } catch (error) {
-    yield put(userForgetPasswordError(error))
+    yield put(userForgetPasswordError(i18n.t(error.response.data.message)))
   }
 }
 

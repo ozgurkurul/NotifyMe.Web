@@ -4,6 +4,9 @@ export const POST_LOGIN = "/api/v1/Authenticate/Login"
 //REGISTER
 export const POST_REGISTER = "/api/v1/Authenticate/Register"
 
+//FORGETPWD
+export const POST_PASSWORD_FORGET = "/api/v1/Authenticate/ForgetPassword"
+
 //WORKSPACE
 export const GET_WORKSPACE = "/api/v1/Workspace/Get"
 

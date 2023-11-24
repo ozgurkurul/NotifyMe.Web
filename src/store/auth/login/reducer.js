@@ -33,7 +33,6 @@ const login = (state = initialState, action) => {
       break
     case API_ERROR:
       state = { ...state, error: action.payload, loading: false }
-      break
     default:
       state = { ...state }
       break
