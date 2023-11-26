@@ -1,17 +1,17 @@
-//LOGIN
+//Authenticate
 export const POST_LOGIN = "/api/v1/Authenticate/Login"
-
-//REGISTER
 export const POST_REGISTER = "/api/v1/Authenticate/Register"
-
-//FORGETPWD
 export const POST_PASSWORD_FORGET = "/api/v1/Authenticate/ForgetPassword"
+export const POST_RESET_PASSWORD = "/api/v1/Authenticate/ResetPassword"
 
-//WORKSPACE
-export const GET_WORKSPACE = "/api/v1/Workspace/Get"
+//Workspace
+export const GET_WORKSPACES = "/api/v1/Workspace"
+export const GET_WORKSPACE_DETAIL = "/api/v1/Workspace"
 
-//DASHBOARD
-export const GET_DASHBOARD = "/api/v1/Dashboard/Get"
+//Dashboard
+export const GET_DASHBOARDS = "/api/v1/Dashboard"
+export const GET_DASHBOARD_DETAIL = "/api/v1/Dashboard"
 
-//USER
-export const GET_USER = "/api/v1/User/Get"
+//User
+export const GET_USERS = "/api/v1/User"
+export const GET_USER_DETAIL = "/api/v1/User"

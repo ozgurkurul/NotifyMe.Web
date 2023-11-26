@@ -6,18 +6,14 @@ import { Route, Redirect } from "react-router-dom"
 import { jwtDecode } from 'jwt-decode'
 
 function isLoginRequied(){
-  let authUserJson = localStorage.getItem("AuthUser")
-  if(!authUserJson){
+  let authUserToken = localStorage.getItem("AuthUserToken")
+  if(!authUserToken){
     return true;
   }
   try{
-    let authUser = JSON.parse(authUserJson);
-    if(!authUser){
-      return true;
-    }
-    const token = authUser["token"];
-    if (jwtDecode(token).exp < Date.now() / 1000) {
+    if (jwtDecode(authUserToken).exp < Date.now() / 1000) {
       localStorage.removeItem("AuthUser");
+      localStorage.removeItem("AuthUserToken");
       return true;
     }
     return false;

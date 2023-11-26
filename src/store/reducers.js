@@ -13,6 +13,9 @@ import Profile from "./auth/profile/reducer"
 //Dashboard 
 import Dashboard from "./dashboard/reducer";
 
+//Workspace 
+import Workspace from "./workspace/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -21,7 +24,8 @@ const rootReducer = combineReducers({
   ForgetPassword,
   PasswordReset,
   Profile,
-  Dashboard
+  Dashboard,
+  Workspace
 })
 
 export default rootReducer

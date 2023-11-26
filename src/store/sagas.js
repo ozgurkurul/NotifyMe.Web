@@ -7,7 +7,8 @@ import ForgetSaga from "./auth/forgetpwd/saga"
 import PasswordResetSaga from "./auth/pwdreset/saga"
 import ProfileSaga from "./auth/profile/saga"
 import LayoutSaga from "./layout/saga"
-import dashboardSaga from "./dashboard/saga";
+import DashboardSaga from "./dashboard/saga";
+import WorkspaceSaga from "./workspace/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     fork(PasswordResetSaga),
     fork(ProfileSaga),
     fork(LayoutSaga),
-    fork(dashboardSaga)
+    fork(DashboardSaga),
+    fork(WorkspaceSaga)
   ])
 }

@@ -9,3 +9,6 @@ export * from "./auth/profile/actions"
 
 //dashboard
 export * from "./dashboard/actions";
+
+//workspace
+export * from "./workspace/actions";

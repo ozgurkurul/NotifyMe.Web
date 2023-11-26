@@ -17,6 +17,7 @@ function* loginUser({ payload: { user, history } }) {
       password: user.password,
     });
     localStorage.setItem("AuthUser", JSON.stringify(response));
+    localStorage.setItem("AuthUserToken", response.token);
     yield put(loginSuccess(response));
     history.push("/dashboard");
   } catch (error) {
@@ -27,6 +28,7 @@ function* loginUser({ payload: { user, history } }) {
 function* logoutUser({ payload: { history } }) {
   try {
     localStorage.removeItem("AuthUser");
+    localStorage.removeItem("AuthUserToken");
     history.push("/login");
   } catch (error) {
     yield put(apiError(i18n.t("Log Out Error")));

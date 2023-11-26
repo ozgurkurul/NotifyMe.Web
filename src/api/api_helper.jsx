@@ -1,13 +1,13 @@
 import axios from "axios"
 
 //apply base url for axios
-const API_URL = "http://localhost:8080"; // import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_ENV == "production" ? import.meta.env.VITE_API_PROD_URL : import.meta.env.VITE_API_DEV_URL;
 
 const axiosApi = axios.create({
     baseURL: API_URL,
 })
 
-axiosApi.defaults.headers.common["Authorization"] = "notifyme.token"
+axiosApi.defaults.headers.common["Authorization"] = 'Bearer ' + localStorage.getItem("AuthUserToken")
 
 axiosApi.interceptors.response.use(
     response => response,
