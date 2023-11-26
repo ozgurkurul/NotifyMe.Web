@@ -33,12 +33,12 @@ const authProtectedRoutes = [
   { path: "/my-boards", component: MyBoards },
   { path: "/board-detail", component: BoardDetail },
   { path: "/issue-detail", component: IssueDetail },
-  { path: "/mainpage", component: MainPage },
   { path: "/integrations", component: Integrations },
   { path: "/settings", component: Settings },
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
-  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+  //{ path: "/", exact: true, component: () => <Redirect to="/mainpage" /> },
+  { path: "/", exact: true, component: MainPage },
 ]
 
 const publicRoutes = [
@@ -47,7 +47,9 @@ const publicRoutes = [
   { path: "/register", component: Register },
   { path: "/forgot-password", component: ForgetPwd },
   { path: "/password-reset", component: PwdReset },
-  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+  { path: "/mainpage", component: MainPage },
+  //{ path: "/", exact: true, component: () => <Redirect to="/notifyme" /> },
+  { path: "/", exact: true, component: MainPage },
 ]
 
 export { publicRoutes, authProtectedRoutes }

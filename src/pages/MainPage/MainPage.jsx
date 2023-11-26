@@ -1,20 +1,55 @@
-import React from "react"
-import {
-  Container,
-} from "reactstrap"
+import React, { useEffect, useState } from "react";
+
+//Import Components
+import Navbar from "./Navbar/Navbar"
+import Section from "./HeroSection/Section"
+import CardsMini from "./HeroSection/cards-mini"
+import AboutUs from "./AboutUs/about-us"
+import Features from "./Features/features"
+import RoadMap from "./RoadMap/road-map"
+import Blog from "./Blog/blog"
+import FAQs from "./Faqs/FAQs"
+import Footer from "./Footer/footer"
 
 const Mainpage = () => {
+  
   //meta title
-  document.title="Mainpage | NotifyMe";
+  document.title="NotifyMe";
+
+  const [imglight, setimglight] = useState(true);
+  const [navClass, setnavClass] = useState("");
+
+  // Use ComponentDidMount
+  useEffect(() => {
+    window.addEventListener("scroll", scrollNavigation, true)
+  },[])
+
+  function scrollNavigation() {
+    var scrollup = document.documentElement.scrollTop
+    if (scrollup > 80) {
+      setimglight(false)
+      setnavClass("nav-sticky")
+    } else {
+      setimglight(true)
+      setnavClass("")
+    }
+  }
+
   return (
     <React.Fragment>
-    <div className="page-content">
-      <Container fluid>
-        <h4>Mainpage</h4>
-      </Container>
-    </div>
-  </React.Fragment>
-  );
+      {/* import navbar */}
+      <Navbar navClass={navClass} imglight={imglight} />
+
+      {/* Hero section */}
+      <Section />
+
+      {/* features */}
+      <Features />
+      
+      {/* footer */}
+      <Footer />
+    </React.Fragment>
+  )
 }
 
-export default Mainpage;
+export default Mainpage
