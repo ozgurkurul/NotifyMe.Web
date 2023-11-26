@@ -41,6 +41,15 @@ const Authmiddleware = ({
           )
         }        
       }
+      else if (!isAuthProtected && props.match.url === '/login') {
+        if(!isLoginRequied()){
+          return (
+            <Redirect
+              to={{ pathname: "/dashboard", state: { from: props.location } }}
+            />
+          )
+        }
+      }
 
       return (
         <Layout>
