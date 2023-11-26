@@ -7,7 +7,14 @@ const axiosApi = axios.create({
     baseURL: API_URL,
 })
 
-axiosApi.defaults.headers.common["Authorization"] = 'Bearer ' + localStorage.getItem("AuthUserToken")
+//axiosApi.defaults.headers.common["Authorization"] = "";
+axiosApi.interceptors.request.use(function (config) {
+    const token = localStorage.getItem("AuthUserToken");
+    if(token){
+        config.headers.Authorization = token;
+    }
+    return config;
+});
 
 axiosApi.interceptors.response.use(
     response => response,
