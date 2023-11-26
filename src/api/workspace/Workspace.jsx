@@ -1,5 +1,5 @@
 import { del, get, post, put } from "../api_helper"
-import { GETTOKEN, GET_WORKSPACES, GET_WORKSPACE_DETAIL } from "../url_helper"
+import { GET_WORKSPACES, GET_WORKSPACE_DETAIL } from "../url_helper"
 
 // Get Workspace
 export const getWorkspaces = () => get(GET_WORKSPACES)
