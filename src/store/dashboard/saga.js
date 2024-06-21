@@ -1,42 +1,41 @@
 import { call, put, takeEvery, all, fork } from "redux-saga/effects";
 
-// Crypto Redux States
-import { GET_CHARTS_DATA } from "./actionTypes";
-import { apiSuccess, apiFail } from "./actions";
-
-//Include Both Helper File with needed methods
+// Dashboard Redux States
+import { GET_DASHBOARDS, GET_DASHBOARD_DETAIL } from "./actionTypes"
 import {
-    getWeeklyData,
-    getYearlyData,
-    getMonthlyData
-}
-    from "../../helpers/fakebackend_helper";
+    getDashboardsSuccess,
+    getDashboardsFail,
+  
+    getDashboardDetailSuccess,
+    getDashboardDetailFail,
+  } from "./actions"
 
-function* getChartsData({ payload: periodType }) {
+//api
+import { 
+    getDashboards, getDashboardDetail,
+} from "../../api/dashboard/Dashboard";
+
+function* fetchDashboards({ workspaceId }) {
     try {
-        var response;
-        if (periodType == "monthly") {
-            response = yield call(getWeeklyData, periodType);
-        }
-        if (periodType == "yearly") {
-            response = yield call(getYearlyData, periodType);
-        }
-        if (periodType == "weekly") {
-            response = yield call(getMonthlyData, periodType);
-        }
-
-        yield put(apiSuccess(GET_CHARTS_DATA, response));
+        const response = yield call(getDashboards, workspaceId)
+        yield put(getDashboardsSuccess(response))
     } catch (error) {
-        yield put(apiFail(GET_CHARTS_DATA, error));
+        yield put(getDashboardsFail(error))
     }
 }
 
-export function* watchGetChartsData() {
-    yield takeEvery(GET_CHARTS_DATA, getChartsData);
+function* fetchDashboardDetail({ dashboardId }) {
+    try {
+        const response = yield call(getDashboardDetail, dashboardId)
+        yield put(getDashboardDetailSuccess(response))
+    } catch (error) {
+        yield put(getDashboardDetailFail(error))
+    }
 }
 
 function* dashboardSaga() {
-    yield all([fork(watchGetChartsData)]);
+    yield takeEvery(GET_DASHBOARDS, fetchDashboards)
+    yield takeEvery(GET_DASHBOARD_DETAIL, fetchDashboardDetail)
 }
 
 export default dashboardSaga;

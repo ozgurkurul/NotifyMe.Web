@@ -1,21 +1,40 @@
 import {
-    API_SUCCESS,
-    API_FAIL,
-    GET_CHARTS_DATA
+    GET_DASHBOARDS,
+    GET_DASHBOARDS_SUCCESS,
+    GET_DASHBOARDS_FAIL,
+
+    GET_DASHBOARD_DETAIL,
+    GET_DASHBOARD_DETAIL_SUCCESS,
+    GET_DASHBOARD_DETAIL_FAIL
 } from "./actionTypes";
 
-export const apiSuccess = (actionType, data) => ({
-    type: API_SUCCESS,
-    payload: { actionType, data },
-});
+export const getDashboards = workspaceId => ({
+  type: GET_DASHBOARDS,
+  workspaceId
+})
 
-export const apiFail = (actionType, error) => ({
-    type: API_FAIL,
-    payload: { actionType, error },
-});
+export const getDashboardsSuccess = dashboards => ({
+  type: GET_DASHBOARDS_SUCCESS,
+  payload: dashboards,
+})
 
-// charts data
-export const getChartsData = (periodType) => ({
-    type: GET_CHARTS_DATA,
-    payload: periodType
-});
+export const getDashboardsFail = error => ({
+  type: GET_DASHBOARDS_FAIL,
+  payload: error,
+})
+
+
+export const getDashboardDetail = dashboardId => ({
+  type: GET_DASHBOARD_DETAIL,
+  dashboardId,
+})
+
+export const getDashboardDetailSuccess = dashboard => ({
+  type: GET_DASHBOARD_DETAIL_SUCCESS,
+  payload: dashboard,
+})
+
+export const getDashboardDetailFail = error => ({
+  type: GET_DASHBOARD_DETAIL_FAIL,
+  payload: error,
+})

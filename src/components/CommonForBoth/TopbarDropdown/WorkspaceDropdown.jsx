@@ -13,7 +13,8 @@ import { useSelector, useDispatch } from "react-redux"
 //i18n
 import { withTranslation } from "react-i18next"
 
-import { getWorkspaces as onGetWorkspaces } from "/src/store/actions"
+//Actions
+import { getWorkspaces as onGetWorkspaces, setWorkspaceId as onSetWorkspaceId } from "/src/store/actions"
 
 const WorkspaceDropdown = () => {
   // Declare a new state variable, which we'll call "menu"
@@ -29,11 +30,16 @@ const WorkspaceDropdown = () => {
       currentWorkspaceId = "0";
 
     setSelectedWorkspaceId(parseInt(currentWorkspaceId));
+
+    dispatch(onSetWorkspaceId(currentWorkspaceId));
   }, [])
 
   const changeWorkspaceAction = workspaceId => {
     localStorage.setItem("WORKSPACE", workspaceId);
+    
     setSelectedWorkspaceId(workspaceId);
+    
+    dispatch(onSetWorkspaceId(workspaceId));
   }
 
   const toggle = () => {
@@ -43,6 +49,7 @@ const WorkspaceDropdown = () => {
   const { workspaces } = useSelector(state => ({
     workspaces: state.Workspace.workspaces.items
   }))
+
   useEffect(() => {
     if(workspaces){
       let workspaceItem = workspaces.find(x => x.id === selectedWorkspaceId);
@@ -55,7 +62,6 @@ const WorkspaceDropdown = () => {
   useEffect(() => {
     dispatch(onGetWorkspaces())
   }, [dispatch])
-
   
   return (
     <>

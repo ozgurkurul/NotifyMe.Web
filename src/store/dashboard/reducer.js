@@ -1,40 +1,46 @@
 import {
-    API_SUCCESS,
-    API_FAIL,
-    GET_CHARTS_DATA
+    GET_DASHBOARDS_SUCCESS,
+    GET_DASHBOARDS_FAIL,
+
+    GET_DASHBOARD_DETAIL_SUCCESS,
+    GET_DASHBOARD_DETAIL_FAIL
 } from "./actionTypes";
 
 const INIT_STATE = {
-    chartsData: []
-};
+    dashboards: [],
+    dashboardDetail: {},
+    error: {},
+}
 
 const Dashboard = (state = INIT_STATE, action) => {
     switch (action.type) {
-        case API_SUCCESS:
-            switch (action.payload.actionType) {
-                case GET_CHARTS_DATA:
-                    return {
-                        ...state,
-                        chartsData: action.payload.data
-                    };
-                default:
-                    return state;
-            }
-        case API_FAIL:
-            switch (action.payload.actionType) {
-                case GET_CHARTS_DATA:
-                    return {
-                        ...state,
-                        chartsDataError: action.payload.error
-                    };
+        case GET_DASHBOARDS_SUCCESS:
+          return {
+            ...state,
+            dashboards: action.payload,
+          }
+    
+        case GET_DASHBOARDS_FAIL:
+          return {
+            ...state,
+            error: action.payload,
+          }
+    
+        case GET_DASHBOARD_DETAIL_SUCCESS:
+          return {
+            ...state,
+            dashboardDetail: action.payload,
+          }
+    
+        case GET_DASHBOARD_DETAIL_FAIL:
+          return {
+            ...state,
+            error: action.payload,
+          }
 
-
-                default:
-                    return state;
-            }
         default:
-            return state;
-    }
+          return state
+      }
 }
 
 

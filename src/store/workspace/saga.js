@@ -15,9 +15,6 @@ import {
   getWorkspaces, getWorkspaceDetail,
 } from "../../api/workspace/Workspace";
 
-//i18n
-import i18n from "../../i18n";
-
 function* fetchWorkspaces() {
   try {
     const response = yield call(getWorkspaces)

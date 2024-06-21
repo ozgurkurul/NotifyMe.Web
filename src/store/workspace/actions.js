@@ -6,6 +6,8 @@ import {
   GET_WORKSPACE_DETAIL,
   GET_WORKSPACE_DETAIL_SUCCESS,
   GET_WORKSPACE_DETAIL_FAIL,
+  
+  SET_WORKSPACE_ID
 } from "./actionTypes"
 
 export const getWorkspaces = () => ({
@@ -36,4 +38,10 @@ export const getWorkspaceDetailSuccess = workspace => ({
 export const getWorkspaceDetailFail = error => ({
   type: GET_WORKSPACE_DETAIL_FAIL,
   payload: error,
+})
+
+
+export const setWorkspaceId = workspaceId => ({
+  type: SET_WORKSPACE_ID,
+  payload: workspaceId,
 })

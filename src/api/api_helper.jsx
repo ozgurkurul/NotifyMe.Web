@@ -1,5 +1,4 @@
 import axios from "axios"
-
 //apply base url for axios
 const API_URL = import.meta.env.VITE_ENV == "production" ? import.meta.env.VITE_API_PROD_URL : import.meta.env.VITE_API_DEV_URL;
 

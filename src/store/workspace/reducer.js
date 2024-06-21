@@ -4,9 +4,12 @@ import {
 
   GET_WORKSPACE_DETAIL_SUCCESS,
   GET_WORKSPACE_DETAIL_FAIL,
+  
+  SET_WORKSPACE_ID
 } from "./actionTypes"
 
 const INIT_STATE = {
+  workspaceId: 0,
   workspaces: [],
   workspaceDetail: {},
   error: {},
@@ -38,6 +41,12 @@ const Workspaces = (state = INIT_STATE, action) => {
         error: action.payload,
       }
 
+    case SET_WORKSPACE_ID:
+      return {
+        ...state,
+        workspaceId: action.payload,
+      } 
+    
     default:
       return state
   }
