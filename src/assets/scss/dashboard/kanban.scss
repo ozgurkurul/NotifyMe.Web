@@ -1,8 +1,8 @@
   .kanban-title-width {
-    min-width: 326px;
+    min-width: 276px;
   }
   .kanban-item-width {
-    min-width: 300px;
+    min-width: 250px;
   }
   @media (max-width: 1024px) {
     .kanban-title-width {
@@ -12,3 +12,11 @@
       min-width: 250px;
     }
   }
+
+//   .react-kanban-board > div{
+//     display: flex !important;
+//   }
+//   .react-kanban-column {
+//     flex: 1 !important;
+//     display: flex !important;
+//   }
