@@ -7,7 +7,8 @@ import {
   DropdownToggle,
   UncontrolledDropdown,
   Row,
-  Col
+  Col,
+  Badge
 } from "reactstrap";
 
 class KanbanCardTitle extends Component {
@@ -16,7 +17,7 @@ class KanbanCardTitle extends Component {
       <React.Fragment>
         <Row>
           <Col className="mb-3 kanban-title-width">
-            <CardTitle className="h4 d-inline">{this.props.title}</CardTitle>
+            <CardTitle className="h4 d-inline">{this.props.title} <Badge pill>2</Badge></CardTitle>
             <UncontrolledDropdown className="d-inline float-end">
               <DropdownToggle className="arrow-none" tag="a">
                 <i className="mdi mdi-dots-vertical m-0 text-muted h5" />

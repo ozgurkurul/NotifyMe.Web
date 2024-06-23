@@ -33,120 +33,27 @@ import { useSelector, useDispatch } from "react-redux"
 import { withTranslation } from "react-i18next"
 
 //Actions
-import { getDashboardDetail as onGetDashboardDetail } from "/src/store/actions"
+import { getDashboardDetail as onGetDashboardDetail, getDashboardDetailKanban as onGetDashboardDetailKanban } from "/src/store/actions"
 
 const DashboardDetail = (props) => {
     const dispatch = useDispatch()
     const dashboardId = props.match.params.id;
 
     const { dashboardDetail } = useSelector(state => ({
-        dashboardDetail: state.Dashboard.dashboardDetail
+        dashboardDetail: state.Dashboard.dashboardDetail.item
     }))
     
+    const { dashboardDetailKanban } = useSelector(state => ({
+        dashboardDetailKanban: state.Dashboard.dashboardDetailKanban.items
+    }))
+
     useEffect(() => {
         if(dashboardId > 0){
           dispatch(onGetDashboardDetail(dashboardId));
+          dispatch(onGetDashboardDetailKanban(dashboardId));
         }
     }, [dashboardId]);
-
-    const boardData = [
-        {
-            id: 1,
-            title: "Backlogs",
-            cards: [
-                {
-                    id: 11,
-                    description: "test",
-                    status: "Waiting",
-                    budget: "$145",
-                    members: [
-                        { username:"Özgür" },
-                        { username:"Amine" }
-                    ]
-                },
-                {
-                    id: 12,
-                    description: "test",
-                    status: "Waiting",
-                    budget: "$145",
-                    members: [
-                        { username:"Özgür" },
-                        { username:"Amine" }
-                    ]
-                },
-                {
-                    id: 13,
-                    description: "test",
-                    status: "Waiting",
-                    budget: "$145",
-                    members: [
-                        { username:"Özgür" },
-                        { username:"Amine" }
-                    ]
-                },
-                {
-                    id: 14,
-                    description: "test",
-                    status: "Waiting",
-                    budget: "$145",
-                    members: [
-                        { username:"Özgür" },
-                        { username:"Amine" }
-                    ]
-                }
-            ]
-        },
-        {
-            id: 2,
-            title: "Processing",
-            cards: [
-                {
-                    id: 2,
-                    description: "test",
-                    status: "Waiting",
-                    budget: "$145",
-                    members: [
-                        { username:"Özgür" },
-                        { username:"Amine" }
-                    ]
-                }
-            ],
-            tasks: [
-                {
-                    id: 2, 
-                    description: 'Create a Skote Dashboard UI', 
-                    status: 'Waiting', 
-                    budget: '$145',
-                    members: [
-                        { username:"Özgür" },
-                        { username:"Amine" }
-                    ]
-                }
-            ]
-        },
-        {
-            id: 3,
-            title: "Parked",
-            cards: [],
-            tasks: []
-        },
-        {
-            id: 4,
-            title: "Completed",
-            cards: [
-                {
-                    id: 4,
-                    description: "test",
-                    status: "Waiting",
-                    budget: "$145",
-                    members: [
-                        { username:"Özgür" },
-                        { username:"Amine" }
-                    ]
-                }
-            ]
-        }
-    ];
+    
     //meta title
     document.title="Dashboard | NotifyMe";
     return (
@@ -172,15 +79,19 @@ const DashboardDetail = (props) => {
                                                     </div>
                                                 </div>
                                             </Col>
-
-                                            <Col lg="6" className="align-self-center text-lg-end">
-                                                <Badge color="info" className="bg-info me-1 font-size-12">{dashboardDetail.stats.backlogs} backlogs</Badge>
-                                                <Badge color="primary" className="bg-primary me-1 font-size-12">{dashboardDetail.stats.processing} processing</Badge>
-                                                <Badge color="secondary" className="bg-secondary me-1 font-size-12">{dashboardDetail.stats.aboutToBeLate} about to be late</Badge>
-                                                <Badge color="warning" className="bg-warning me-1 font-size-12">{dashboardDetail.stats.park} park</Badge>
-                                                <Badge color="danger" className="bg-danger me-1 font-size-12">{dashboardDetail.stats.delayed} delayed</Badge>
-                                                <Badge color="success" className="bg-success me-1 font-size-12">{dashboardDetail.stats.completed} completed</Badge>
-                                            </Col>
+                                            {
+                                                !isEmpty(dashboardDetail.stats) &&
+                                                <Col lg="6" className="align-self-center text-lg-end">
+                                                    <Badge color="dark" className="bg-dark me-1 font-size-12">{dashboardDetail.stats.backlogs} backlogs</Badge>
+                                                    <Badge color="info" className="bg-info me-1 font-size-12">{dashboardDetail.stats.toDos} to dos</Badge>
+                                                    <Badge color="primary" className="bg-primary me-1 font-size-12">{dashboardDetail.stats.inProgress} in progress</Badge>
+                                                    <Badge color="warning" className="bg-warning me-1 font-size-12">{dashboardDetail.stats.parked} parked</Badge>
+                                                    <Badge color="secondary" className="bg-secondary me-1 font-size-12">{dashboardDetail.stats.aboutToBeLate} about to be late</Badge>
+                                                    <Badge color="danger" className="bg-danger me-1 font-size-12">{dashboardDetail.stats.delayed} delayed</Badge>
+                                                    <Badge color="success" className="bg-success me-1 font-size-12">{dashboardDetail.stats.completed} completed</Badge>
+                                                </Col>
+                                            }
+                                            
                                         </Row>
 
                                     </CardBody>
@@ -190,7 +101,7 @@ const DashboardDetail = (props) => {
                     }
 
                     {
-                        !isEmpty(boardData) && (<DashboardDetailKanban board={{ columns: boardData }} />)
+                        !isEmpty(dashboardDetailKanban) && (<DashboardDetailKanban board={{ columns: dashboardDetailKanban }} />)
                     }
 
                 </Container>

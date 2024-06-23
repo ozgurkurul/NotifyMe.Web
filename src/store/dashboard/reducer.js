@@ -3,12 +3,16 @@ import {
     GET_DASHBOARDS_FAIL,
 
     GET_DASHBOARD_DETAIL_SUCCESS,
-    GET_DASHBOARD_DETAIL_FAIL
+    GET_DASHBOARD_DETAIL_FAIL,
+
+    GET_DASHBOARD_DETAIL_KANBAN_SUCCESS,
+    GET_DASHBOARD_DETAIL_KANBAN_FAIL
 } from "./actionTypes";
 
 const INIT_STATE = {
     dashboards: [],
     dashboardDetail: {},
+    dashboardDetailKanban: [],
     error: {},
 }
 
@@ -33,6 +37,18 @@ const Dashboard = (state = INIT_STATE, action) => {
           }
     
         case GET_DASHBOARD_DETAIL_FAIL:
+          return {
+            ...state,
+            error: action.payload,
+          }
+
+        case GET_DASHBOARD_DETAIL_KANBAN_SUCCESS:
+          return {
+            ...state,
+            dashboardDetailKanban: action.payload,
+          }
+    
+        case GET_DASHBOARD_DETAIL_KANBAN_FAIL:
           return {
             ...state,
             error: action.payload,

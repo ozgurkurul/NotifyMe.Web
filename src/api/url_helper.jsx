@@ -11,6 +11,7 @@ export const GET_WORKSPACE_DETAIL = "/api/v1/Workspace"
 //Dashboard
 export const GET_DASHBOARDS = "/api/v1/Dashboard"
 export const GET_DASHBOARD_DETAIL = "/api/v1/Dashboard"
+export const GET_DASHBOARD_DETAIL_KANBAN = "/api/v1/Dashboard/{id}/Items"
 
 //User
 export const GET_USERS = "/api/v1/User"

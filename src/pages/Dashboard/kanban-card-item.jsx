@@ -1,75 +1,58 @@
-import React, { Component } from "react"
+import React, { Component, useEffect, useState, setState } from "react"
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
-import classNames from "classnames"
-import { Card, CardBody } from "reactstrap"
+import { Card, CardBody, Tooltip } from "reactstrap"
 import { map, size } from "lodash"
 
-//Import Images
-import images from "/src/assets/images"
-
-import { statusClasses } from "../../common/data/tasks"
-
 class KanbanCardItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { tttop: [] };
+  }
   render() {
     const { data } = this.props
+
     return (
       <React.Fragment>
         <Card className="task-box">
           <CardBody className="kanban-item-width">
             <div className="float-end ms-2">
-              <span
-                className={classNames(
-                  "badge rounded-pill badge-soft-secondary font-size-12",
-                  statusClasses[data.status.toLowerCase()]
-                )}
-              >
-                {data.status}
+              <span className={"badge rounded-pill badge-soft-secondary font-size-12"}>
+                {data.priority}
               </span>
             </div>
             <div>
               <h5 className="font-size-15">
                 <Link to="#" className="text-dark">
-                  {data.description}
+                  {data.title}
                 </Link>
               </h5>
-              <p className="text-muted mb-4">{data.dueDate}</p>
+              <p className="text-muted mb-4">{data.issueType}</p>
             </div>
 
             <div className="avatar-group float-start">
               {map(
-                data.members,
-                (member, index) =>
-                  index < 2 && (
+                data.users,
+                (username, index) =>
+                  index < 4 && (
                     <div className="avatar-group-item"  key={index}>
-                    <Link
-                      to="#"
-                      className="d-inline-block"
-                
-                    >
-                      {member.userImg ? (
-                        <img
-                          src={images[member.userImg]}
-                          className="rounded-circle avatar-xs"
-                          alt=""
-                        />
-                      ) : (
-                        <div className="avatar-xs">
-                          <span className="avatar-title rounded-circle bg-info text-white font-size-16">
-                            {member.username.charAt(0)}
-                          </span>
+                      <Tooltip placement="top" target={"kanban_item_" + data.id + "_user_" + index} isOpen={ this.state.tttop["kanban_item_" + data.id + "_user_" + index] } toggle={() => this.setState({ tttop: !this.state.tttop["kanban_item_" + data.id + "_user_" + index] }) }>{username}</Tooltip>
+                      {(
+                        <div className="avatar-xs" id={"kanban_item_" + data.id + "_user_" + index}>
+                            <span className="avatar-title rounded-circle bg-primary text-white font-size-16">
+                              {username.charAt(0)}
+                            </span>
                         </div>
                       )}
-                    </Link>
                     </div>
                   )
               )}
-              {size(data.members) > 2 && (
+              {size(data.users) > 4 && (
                 <div className="avatar-group-item">
                 <Link to="#" className="d-inline-block">
                   <div className="avatar-xs">
-                    <span className="avatar-title rounded-circle bg-info text-white font-size-16">
-                      {size(data.members) - 2} +
+                    <span className="avatar-title rounded-circle bg-info text-white font-size-14 text-lg-center">
+                      +{size(data.users) - 4}
                     </span>
                   </div>
                 </Link>
@@ -78,8 +61,7 @@ class KanbanCardItem extends Component {
             </div>
 
             <div className="text-end">
-              <h5 className="font-size-15 mb-1">{data.budget}</h5>
-              <p className="mb-0 text-muted">Budget</p>
+              <p className="mb-0 text-muted">{data.createdDate}</p>
             </div>
           </CardBody>
         </Card>

@@ -5,7 +5,11 @@ import {
 
     GET_DASHBOARD_DETAIL,
     GET_DASHBOARD_DETAIL_SUCCESS,
-    GET_DASHBOARD_DETAIL_FAIL
+    GET_DASHBOARD_DETAIL_FAIL,
+
+    GET_DASHBOARD_DETAIL_KANBAN,
+    GET_DASHBOARD_DETAIL_KANBAN_SUCCESS,
+    GET_DASHBOARD_DETAIL_KANBAN_FAIL
 } from "./actionTypes";
 
 export const getDashboards = workspaceId => ({
@@ -36,5 +40,21 @@ export const getDashboardDetailSuccess = dashboard => ({
 
 export const getDashboardDetailFail = error => ({
   type: GET_DASHBOARD_DETAIL_FAIL,
+  payload: error,
+})
+
+
+export const getDashboardDetailKanban = dashboardId => ({
+  type: GET_DASHBOARD_DETAIL_KANBAN,
+  dashboardId,
+})
+
+export const getDashboardDetailKanbanSuccess = data => ({
+  type: GET_DASHBOARD_DETAIL_KANBAN_SUCCESS,
+  payload: data,
+})
+
+export const getDashboardDetailKanbanFail = error => ({
+  type: GET_DASHBOARD_DETAIL_KANBAN_FAIL,
   payload: error,
 })

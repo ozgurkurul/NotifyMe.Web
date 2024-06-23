@@ -46,10 +46,11 @@ class DashboardCardItem extends Component {
                       </div>
 
                       <div>
-                        <Badge color="info" className="bg-info me-1">{dashboardDetail.stats.backlogs} backlogs</Badge>
-                        <Badge color="primary" className="bg-primary me-1">{dashboardDetail.stats.processing} processing</Badge>
+                        <Badge color="dark" className="bg-dark me-1">{dashboardDetail.stats.backlogs} backlogs</Badge>
+                        <Badge color="info" className="bg-info me-1">{dashboardDetail.stats.toDos} to dos</Badge>
+                        <Badge color="primary" className="bg-primary me-1">{dashboardDetail.stats.inProgress} in progress</Badge>
                         <Badge color="secondary" className="bg-secondary me-1">{dashboardDetail.stats.aboutToBeLate} about to be late</Badge>
-                        <Badge color="warning" className="bg-warning me-1">{dashboardDetail.stats.park} park</Badge>
+                        <Badge color="warning" className="bg-warning me-1">{dashboardDetail.stats.parked} parked</Badge>
                         <Badge color="danger" className="bg-danger me-1">{dashboardDetail.stats.delayed} delayed</Badge>
                         <Badge color="success" className="bg-success me-1">{dashboardDetail.stats.completed} completed</Badge>
                       </div>
