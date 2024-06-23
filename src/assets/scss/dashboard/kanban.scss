@@ -1,0 +1,14 @@
+  .kanban-title-width {
+    min-width: 326px;
+  }
+  .kanban-item-width {
+    min-width: 300px;
+  }
+  @media (max-width: 1024px) {
+    .kanban-title-width {
+      min-width: 276px;
+    }
+    .kanban-item-width {
+      min-width: 250px;
+    }
+  }

@@ -12,6 +12,7 @@ import PwdReset from "../pages/Authentication/PasswordReset"
 
 // WorkSpaces
 import Dashboard from "../pages/Dashboard/index"
+import DashboardDetail from "../pages/Dashboard/dashboard-detail"
 import Users from "../pages/User/Users"
 import UserDetail from "../pages/User/UserDetail"
 import UserProfile from "../pages/User/UserProfile"
@@ -24,6 +25,7 @@ import Settings from "../pages/Settings/Settings"
 
 const authProtectedRoutes = [
   { path: "/dashboard", component: Dashboard },
+  { path: "/dashboard/:id", component: DashboardDetail },
 
   // //profile
   { path: "/profile", component: UserProfile },

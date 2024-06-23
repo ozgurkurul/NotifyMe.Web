@@ -19,6 +19,10 @@ import {
   DropdownToggle,
   DropdownItem
 } from "reactstrap";
+import { isEmpty, map } from "lodash";
+
+import DashboardCardItem from "./dashboard-card-item"
+
 //redux
 import { useSelector, useDispatch } from "react-redux"
 
@@ -26,8 +30,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { withTranslation } from "react-i18next"
 
 //Actions
-import { getWorkspaceDetail as onGetWorkspaceDetail, getDashboards as onGetDashboards } from "/src/store/actions"
-import DashboardCardItem from "./dashboard-card-item"
+import { 
+  getWorkspaceDetail as onGetWorkspaceDetail, 
+  getDashboards as onGetDashboards 
+} from "/src/store/actions"
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -66,29 +72,6 @@ const Dashboard = () => {
     }
   }, [selectedWorkspaceId]);
 
-  const workspaceDashboards = [
-    {
-      id: 1,
-      name:  "Özgür 1 Dashboard",
-      ownerName: "Özgür"
-    },
-    {
-      id : 2,
-      name: "Amine 2 Dashboard",
-      ownerName: "Amine"
-    },
-    {
-      id: 3,
-      name : "Amine 3 Dashboard",
-      ownerName: "Amine"
-    },
-    {
-      id: 4,
-      name: "Amine 4 Dashboard",
-      ownerName: "Amine"
-    }
-  ];
-
   //meta title
   document.title="Dashboard | NotifyMe";
   return (
@@ -96,16 +79,16 @@ const Dashboard = () => {
       <div className="page-content">
         <Container fluid>
           {
-            workspaceDetail &&
+            !isEmpty(workspaceDetail) &&
             <Row>
               <Col lg="12">
                 <Card className="mini-stats-wid" key={"_card_workspace_" + workspaceDetail.id}>
                   <CardBody>
                     <Row>
-                      <Col lg="4">
+                      <Col lg="5">
                         <div className="d-flex">
                           <div className="me-3">                            
-                            <div className="mini-stat-icon avatar-md rounded-circle bg-primary align-self-center">
+                            <div className="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
                               <span className="avatar-title">
                                 {workspaceDetail.shortName}
                               </span>
@@ -119,41 +102,42 @@ const Dashboard = () => {
                           </div>
                         </div>
                       </Col>
-
-                      <Col lg="4" className="align-self-center">
-                        <div className="text-lg-center mt-4 mt-lg-0">
+                      <Col lg="7" className="align-self-center">
+                        <div className="text-lg-center mt-2 mt-lg-0">
                           <Row>
-                            <Col xs="4">
+                            <Col xs="3">
                               <div>
                                 <p className="text-muted text-truncate mb-2">
-                                  Total Projects
+                                  Total Dashboards
                                 </p>
                                 <h5 className="mb-0">48</h5>
                               </div>
                             </Col>
-                            <Col xs="4">
+                            <Col xs="3">
                               <div>
                                 <p className="text-muted text-truncate mb-2">
-                                  Projects
+                                  My Dashboards
                                 </p>
                                 <h5 className="mb-0">40</h5>
                               </div>
                             </Col>
-                            <Col xs="4">
+                            <Col xs="3">
                               <div>
                                 <p className="text-muted text-truncate mb-2">
-                                  Clients
+                                  Other Dashboards
+                                </p>
+                                <h5 className="mb-0">18</h5>
+                              </div>
+                            </Col>
+                            <Col xs="3">
+                              <div>
+                                <p className="text-muted text-truncate mb-2">
+                                  Delayed Dashboards
                                 </p>
                                 <h5 className="mb-0">18</h5>
                               </div>
                             </Col>
                           </Row>
-                        </div>
-                      </Col>
-
-                      <Col lg="4" className="d-none d-lg-block">
-                        <div className="clearfix mt-4 mt-lg-0">
-                          
                         </div>
                       </Col>
                     </Row>

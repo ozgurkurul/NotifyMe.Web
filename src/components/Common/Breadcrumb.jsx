@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
 import { Row, Col, BreadcrumbItem } from "reactstrap"
+import { isEmpty } from "lodash";
 
 const Breadcrumb = props => {
   return (
@@ -12,10 +13,10 @@ const Breadcrumb = props => {
           <div className="page-title-right">
             <ol className="breadcrumb m-0">
               <BreadcrumbItem>
-                <Link to="#">{props.title}</Link>
+                <Link to={!isEmpty(props.titlePath) ? props.titlePath : "#"}>{props.title}</Link>
               </BreadcrumbItem>
               <BreadcrumbItem active>
-                <Link to="#">{props.breadcrumbItem}</Link>
+                <Link to={!isEmpty(props.breadcrumbItemPath) ? props.breadcrumbItemPath : "#"}>{props.breadcrumbItem}</Link>
               </BreadcrumbItem>
             </ol>
           </div>
@@ -27,7 +28,9 @@ const Breadcrumb = props => {
 
 Breadcrumb.propTypes = {
   breadcrumbItem: PropTypes.string,
-  title: PropTypes.string
+  breadcrumbItemPath: PropTypes.string,
+  title: PropTypes.string,
+  titlePath: PropTypes.string,
 }
 
 export default Breadcrumb
