@@ -20,4 +20,4 @@ RUN yarn build
 CMD ["yarn", "dev"]
 
 # 5173 numaralı portu expose edin (Vite'ın varsayılan portu)
-EXPOSE 5173
+EXPOSE 3000
