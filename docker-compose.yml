@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  test-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:5173
+    stdin_open: true
+    tty: true
+    restart: on-failure
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: yarn dev
+    environment:
+      VITE_APP_DEFAULTAUTH: "fake"
+      VITE_ENV: "development"
+      VITE_API_DEV_URL: "https://api.ozgurkurul.com.tr"
+      VITE_API_PROD_URL: "https://api.ozgurkurul.com.tr"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
