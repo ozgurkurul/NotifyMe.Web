@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 # Proje bağımlılıklarını yükle
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Tüm uygulama dosyalarını kopyala
 COPY . .
@@ -20,4 +20,4 @@ RUN yarn build
 EXPOSE 3000
 
 # Komut: production modunda çalıştır
-CMD ["yarn", "dev", "--port", "3000"]
+CMD ["yarn", "preview", "--port", "3000"]

@@ -13,8 +13,5 @@ export default defineConfig({
     },
     hmr: false, // websocket HMR'yi tamamen kapatın
   },
-  esbuild: {
-    jsxFactory: 'h',
-    jsxFragment: 'Fragment'
-  }
+  mode: 'production'
 })
