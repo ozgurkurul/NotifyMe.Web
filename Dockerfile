@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 # Proje bağımlılıklarını yükle
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # Tüm uygulama dosyalarını kopyala
 COPY . .
@@ -16,8 +16,8 @@ COPY . .
 # Uygulamayı build edin
 RUN yarn build
 
-# Uygulamayı başlat
-CMD ["sh", "-c", "VITE_HMR=false yarn preview"]
-
 # 5173 numaralı portu expose edin (Vite'ın varsayılan portu)
 EXPOSE 3000
+
+# Uygulamayı başlat 
+CMD ["sh", "-c", "VITE_HMR=false yarn preview"]

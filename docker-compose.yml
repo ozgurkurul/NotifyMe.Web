@@ -13,10 +13,11 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: yarn dev
+    command: yarn preview
     environment:
       VITE_APP_DEFAULTAUTH: "fake"
-      VITE_ENV: "development"
+      NODE_ENV: "production"
+      VITE_ENV: "production"
       VITE_API_DEV_URL: "https://api.ozgurkurul.com.tr"
       VITE_API_PROD_URL: "https://api.ozgurkurul.com.tr"
     logging:
