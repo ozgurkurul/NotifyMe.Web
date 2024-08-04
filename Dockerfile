@@ -19,5 +19,5 @@ RUN yarn build
 # 5173 numaralı portu expose edin (Vite'ın varsayılan portu)
 EXPOSE 3000
 
-# Uygulamayı başlat 
-CMD ["sh", "-c", "VITE_HMR=false yarn preview"]
+# Komut: production modunda çalıştır
+CMD ["yarn", "dev", "--port", "3000"]
