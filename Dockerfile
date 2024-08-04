@@ -20,4 +20,4 @@ RUN yarn build
 EXPOSE 3000
 
 # Komut: production modunda çalıştır
-CMD ["yarn", "preview", "--port", "3000"]
+CMD ["yarn", "dev"]
