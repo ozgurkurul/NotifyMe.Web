@@ -8,9 +8,10 @@ export default defineConfig({
     host: true,
     port: 3000, // This is the port which we will use in docker
     // add the next lines if you're using windows and hot reload doesn't work
-     watch: {
-       usePolling: true
-     }
+    watch: {
+      usePolling: true
+    },
+    hmr: false, // websocket HMR'yi tamamen kapatın
   },
   esbuild: {
     jsxFactory: 'h',
